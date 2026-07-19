@@ -1,15 +1,15 @@
 const KnowledgeBase = {
     atendimento: {
-        titulo: "Atendimento CSAT",
+        titulo: "Atendimento de Excelência",
         artigos: [
-            { titulo: "Melhorando o CSAT", desc: "Foco em Customer Effort Score (CES) e resolução no primeiro contato (FCR)." },
-            { titulo: "Habilidades de Equipe", desc: "Seis chaves para melhorar habilidades: escuta, empatia, foco na solução e clareza." }
+            { titulo: "Escuta Ativa", desc: "A escuta ativa é a base do CSAT. Não interrompa, valide os sentimentos e resuma para confirmar entendimento." },
+            { titulo: "Personalização", desc: "Evite respostas padrão. Adapte cada interação às necessidades específicas do cliente para reduzir esforço." }
         ]
     },
     clientesDificeis: {
-        titulo: "Gestão de Clientes Irritados",
+        titulo: "Gestão de Crise (Desescalada)",
         artigos: [
-            { titulo: "Desescalada no Chat", desc: "Valide emoções, ouça ativamente e mantenha a calma para transformar detratores em promotores." }
+            { titulo: "Cliente Irritado", desc: "Use empatia e perguntas abertas para acalmar a situação. Mantenha o profissionalismo mesmo sob ataques[cite: 1].", script: "Entendo perfeitamente sua frustração e estou aqui para resolvermos isso agora." }
         ]
     }
 };
