@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Pixbet | Central de Conhecimento</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">PIXBET <span>CENTRAL</span></div>
+            <nav id="nav-menu">
+                <a href="#" class="active" onclick="renderView('dashboard')">🏠 Dashboard</a>
+                <a href="#" onclick="renderView('atendimento')">📚 Atendimento</a>
+                <a href="#" onclick="renderView('clientes-dificeis')">😡 Clientes Difíceis</a>
+                <a href="#" onclick="renderView('clima')">📊 Feedback Clima</a>
+            </nav>
+        </aside>
+        <main class="content">
+            <header class="topbar">
+                <input type="text" id="search-bar" placeholder="Pesquisar...">
+            </header>
+            <section id="main-view" class="view-area"></section>
+        </main>
+    </div>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

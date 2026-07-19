@@ -1,0 +1,7 @@
+:root { --bg: #090909; --card: #171717; --sidebar: #111111; --primary: #00B050; --text: #FFFFFF; }
+body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; }
+.app-container { display: flex; height: 100vh; }
+.sidebar { width: 260px; background: var(--sidebar); padding: 20px; border-right: 1px solid #222; }
+.content { flex: 1; padding: 20px; overflow-y: auto; }
+.card { background: var(--card); padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid var(--primary); }
+.btn-copy { background: var(--primary); color: white; border: none; padding: 8px; cursor: pointer; border-radius: 4px; }
