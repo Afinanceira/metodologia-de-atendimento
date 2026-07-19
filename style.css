@@ -2,6 +2,9 @@
 body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; }
 .app-container { display: flex; height: 100vh; }
 .sidebar { width: 260px; background: var(--sidebar); padding: 20px; border-right: 1px solid #222; }
-.content { flex: 1; padding: 20px; overflow-y: auto; }
-.card { background: var(--card); padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid var(--primary); }
-.btn-copy { background: var(--primary); color: white; border: none; padding: 8px; cursor: pointer; border-radius: 4px; }
+.logo { color: var(--primary); font-weight: bold; font-size: 1.2rem; margin-bottom: 30px; }
+.content { flex: 1; padding: 40px; overflow-y: auto; }
+.topbar { margin-bottom: 30px; }
+#search-bar { width: 100%; max-width: 500px; padding: 12px; border-radius: 8px; border: none; background: var(--card); color: white; border: 1px solid #333; }
+.card { background: var(--card); padding: 25px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid var(--primary); transition: 0.3s; }
+.btn-copy { background: var(--primary); color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 5px; margin-top: 10px; font-weight: bold; }
