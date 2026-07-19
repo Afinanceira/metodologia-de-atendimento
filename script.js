@@ -11,16 +11,11 @@ function renderView(page) {
     view.innerHTML = "";
     
     if (page === 'clima') {
-        view.innerHTML = `
-            <h2>Pesquisa de Clima</h2>
-            <form action="https://formspree.io/f/xojgdkdw" method="POST">
-                <textarea name="feedback" required></textarea>
-                <button type="submit">Enviar</button>
-            </form>`;
+        view.innerHTML = `<h2>Feedback de Clima</h2><form action="https://formspree.io/f/xojgdkdw" method="POST"><textarea name="feedback" style="width:100%; height:100px; background:#171717; color:white; border:1px solid #333;"></textarea><br><button type="submit" class="btn-copy">Enviar Feedback</button></form>`;
     } else if (KnowledgeBase[page]) {
-        KnowledgeBase[page].artigos.forEach(a => view.appendChild(createCard(a.titulo, a.desc)));
+        KnowledgeBase[page].artigos.forEach(a => view.appendChild(createCard(a.titulo, a.desc, a.script)));
     }
 }
 
-// Inicialização
+// Inicia no Dashboard
 renderView('dashboard');
