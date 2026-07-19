@@ -2,29 +2,99 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pixbet | Central de Conhecimento Operacional</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root { --bg: #090909; --card: #171717; --sidebar: #111111; --primary: #00B050; --text: #FFFFFF; }
+        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; height: 100vh; }
+        .sidebar { width: 280px; background: var(--sidebar); padding: 20px; border-right: 1px solid #222; }
+        .logo { color: var(--primary); font-weight: bold; font-size: 1.4rem; margin-bottom: 40px; text-transform: uppercase; }
+        .sidebar a { display: block; color: #ddd; padding: 15px; text-decoration: none; border-radius: 8px; margin-bottom: 5px; transition: 0.3s; }
+        .sidebar a:hover { background: var(--card); color: var(--primary); }
+        .content { flex: 1; padding: 40px; overflow-y: auto; }
+        .card { background: var(--card); padding: 25px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid var(--primary); }
+        .btn-copy { background: var(--primary); color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; margin-top: 15px; font-weight: bold; }
+    </style>
 </head>
 <body>
-    <div class="app-container">
-        <aside class="sidebar">
-            <div class="logo">PIXBET <span>CENTRAL</span></div>
-            <nav id="nav-menu">
-                <a href="#" class="active" onclick="renderView('dashboard')">🏠 Dashboard</a>
-                <a href="#" onclick="renderView('atendimento')">📚 Atendimento</a>
-                <a href="#" onclick="renderView('clientes-dificeis')">😡 Clientes Difíceis</a>
-                <a href="#" onclick="renderView('clima')">📊 Feedback Clima</a>
-            </nav>
-        </aside>
-        <main class="content">
-            <header class="topbar">
-                <input type="text" id="search-bar" placeholder="Pesquisar artigos, scripts...">
-            </header>
-            <section id="main-view" class="view-area"></section>
-        </main>
-    </div>
-    <script src="data.js"></script>
-    <script src="script.js"></script>
+    <aside class="sidebar">
+        <div class="logo">PIXBET CENTRAL</div>
+        <a href="#" onclick="show('chatVantagens')">💬 O Chat Online</a>
+        <a href="#" onclick="show('dicasChat')">💡 Dicas de Atendimento</a>
+        <a href="#" onclick="show('atendimento')">📚 Atendimento</a>
+        <a href="#" onclick="show('clientes')">😡 Clientes Difíceis</a>
+        <a href="#" onclick="show('qualidade')">🎯 Qualidade (CSAT/TMR)</a>
+        <a href="#" onclick="show('glossario')">📖 Glossário Técnico</a>
+        <a href="#" onclick="show('clima')">📊 Feedback Clima</a>
+    </aside>
+    <main class="content" id="display-area">
+        <h1>Central de Conhecimento Operacional</h1>
+        <p>Selecione uma categoria para consultar manuais e estratégias de alta performance.</p>
+    </main>
+
+    <script>
+        const db = {
+            chatVantagens: {
+                title: "O Que é e Vantagens do Chat",
+                items: [
+                    { t: "O que é", d: "Atendimento em tempo real via janela de chat no site/app, podendo ser via humanos ou chatbots integrados." },
+                    { t: "Agilidade", d: "Otimiza tempo de espera, permite respostas simultâneas e aumenta a produtividade da operação." },
+                    { t: "Conversão", d: "38% dos clientes já compraram devido a um bom atendimento via chat. É uma poderosa ferramenta de venda consultiva." },
+                    { t: "Dados", d: "Sistemas de chat geram relatórios valiosos sobre o comportamento do consumidor para tomadas de decisão inteligentes." }
+                ]
+            },
+            dicasChat: {
+                title: "10 Dicas para Atendimento via Chat",
+                items: [
+                    { t: "Tecnologia e Treinamento", d: "Invista em softwares modernos e realize diagnósticos frequentes na equipe para manter a excelência." },
+                    { t: "Customer Centric", d: "Coloque o cliente no centro. Pratique escuta ativa e foque nas dores reais dele." },
+                    { t: "Tempo de Resposta", d: "Agilidade é o diferencial. Monitore o tempo médio de espera e integre canais para evitar filas longas." },
+                    { t: "Humanização", d: "Chatbots são úteis, mas o cliente deve sempre ter opção de um atendente humano empático." },
+                    { t: "Conhecimento e Clareza", d: "Domine os processos. Use respostas curtas e claras. Divida explicações complexas em várias mensagens." },
+                    { t: "Adequação de Linguagem", d: "Identifique se o cliente prefere tom sério ou informal. Seja agradável, respeitoso e evite exagerar em gírias." }
+                ]
+            },
+            atendimento: {
+                title: "Atendimento de Excelência",
+                items: [
+                    { t: "Escuta Ativa", d: "Utilize espelhamento para confirmar entendimento e reduzir carga emocional." },
+                    { t: "Ciência da Empatia", d: "Ajuste o tom para transmitir segurança, identificando o estado mental do cliente." }
+                ]
+            },
+            clientes: {
+                title: "Gestão de Crise",
+                items: [
+                    { t: "Desescalada", d: "Valide sentimentos antes da solução técnica.", s: "Compreendo perfeitamente o seu ponto e peço sinceras desculpas. Vamos analisar o seu caso com total prioridade agora." },
+                    { t: "Ameaças", d: "Mantenha a neutralidade. Informe que o caso segue processos de auditoria.", s: "Ressaltamos que todos os nossos processos seguem as normas de segurança e transparência." }
+                ]
+            },
+            qualidade: {
+                title: "Métricas (CSAT & TMR)",
+                items: [
+                    { t: "CSAT", d: "O foco deve ser a redução do esforço do cliente (CES) e resolução no primeiro contato (FCR)." },
+                    { t: "TMR", d: "Use macros para agilizar, mas personalize sempre para garantir a qualidade." }
+                ]
+            },
+            glossario: {
+                title: "Glossário Técnico",
+                items: [
+                    { t: "CSAT/TMR/FCR", d: "Indicadores chave de satisfação, tempo de resposta e resolução no primeiro contato." },
+                    { t: "Gateway", d: "Interface de processamento financeiro." }
+                ]
+            }
+        };
+
+        function show(key) {
+            const area = document.getElementById('display-area');
+            if (key === 'clima') {
+                area.innerHTML = `<h2>Feedback de Clima</h2><form action="https://formspree.io/f/xojgdkdw" method="POST"><textarea name="feedback" style="width:100%;height:100px;background:#171717;color:white;"></textarea><br><button type="submit" class="btn-copy">Enviar Feedback</button></form>`;
+            } else if (db[key]) {
+                let html = `<h1>${db[key].title}</h1>`;
+                db[key].items.forEach(i => {
+                    html += `<div class="card"><h3>${i.t}</h3><p>${i.d}</p>${i.s ? `<button class="btn-copy" onclick="navigator.clipboard.writeText('${i.s}')">Copiar Script</button>` : ''}</div>`;
+                });
+                area.innerHTML = html;
+            }
+        }
+    </script>
 </body>
 </html>
