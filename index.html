@@ -22,16 +22,18 @@
         .sidebar { width: 300px; background: rgba(17, 17, 17, 0.95); padding: 25px; border-right: 1px solid #222; overflow-y: auto; display: flex; flex-direction: column; }
         .logo { color: var(--primary); font-weight: bold; font-size: 1.4rem; margin-bottom: 30px; text-align: center; letter-spacing: 1px; }
         .sidebar a { display: block; color: #ddd; padding: 14px; text-decoration: none; border-radius: 8px; margin-bottom: 8px; font-size: 0.9rem; transition: 0.3s; border: 1px solid transparent; }
-        .sidebar a:hover { background: var(--card); color: var(--primary); border: 1px solid var(--primary); }
+        .sidebar a:hover { background: var(--card); color: var(--primary); border: 1px solid var(--primary); padding-left: 20px; }
         
-        .content { flex: 1; padding: 50px; overflow-y: auto; background: rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; align-items: center; }
+        .content { flex: 1; padding: 50px; overflow-y: auto; background: rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; }
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; width: 100%; max-width: 1200px; }
         
-        /* Cards Interativos */
-        .card { background: var(--card); padding: 25px; border-radius: 15px; border-left: 5px solid var(--primary); transition: transform 0.4s; cursor: pointer; }
-        .card:hover { transform: scale(1.03); background: #202020; }
+        /* Cards Aprimorados */
+        .card { background: var(--card); padding: 30px; border-radius: 15px; border-left: 5px solid var(--primary); transition: 0.4s; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: flex; flex-direction: column; }
+        .card:hover { transform: scale(1.02); background: #202020; box-shadow: 0 0 20px rgba(0,176,80,0.2); }
+        .card h3 { color: var(--primary); margin-top: 0; font-size: 1.2rem; }
+        .card p { line-height: 1.6; color: #ccc; font-size: 0.95rem; margin-bottom: 20px; }
+        .tag { align-self: flex-start; background: #000; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; border: 1px solid #444; color: #aaa; text-transform: uppercase; }
         
-        /* Formulário de Feedback */
         form { background: var(--card); padding: 30px; border-radius: 15px; width: 100%; max-width: 500px; border: 1px solid #333; }
         label { display: block; margin-top: 15px; font-size: 0.9rem; color: #ccc; }
         input, textarea, select { width: 100%; background: #000; border: 1px solid #444; color: white; padding: 12px; margin-top: 5px; border-radius: 5px; box-sizing: border-box; }
@@ -56,62 +58,62 @@
     </aside>
     <main class="content" id="display-area">
         <h1>Central de Conhecimento</h1>
-        <p>Selecione uma categoria no menu lateral para visualizar os manuais.</p>
+        <p>Selecione uma categoria no menu lateral para visualizar os manuais detalhados.</p>
     </main>
 
     <script>
         const db = {
             habilidadesAgente: { title: "🛡️ Habilidades do Agente", items: [
-                { t: "O Arsenal de Habilidades", d: "Exige compreensão emocional, multitarefa e entrega de soluções rápidas." },
-                { t: "Pilares do Atendimento", d: "Comunicação, empatia, resolução de problemas e voz da marca." },
-                { t: "Por que é Crucial?", d: "89% dos clientes voltam após um atendimento positivo." },
-                { t: "Impacto no Negócio", d: "Transforma chats em experiências memoráveis." }
+                { t: "O Arsenal de Habilidades", d: "Exige uma combinação de inteligência emocional para gerir o estresse, multitarefa ágil com até 3 chats simultâneos e precisão técnica na entrega da solução." },
+                { t: "Pilares do Atendimento", d: "Comunicação assertiva, empatia genuína, domínio técnico para resolução de problemas e estrito cumprimento da voz da marca." },
+                { t: "Por que é Crucial?", d: "Dados indicam que 89% dos clientes retornam à plataforma após um atendimento positivo, tornando o suporte a maior ferramenta de retenção." },
+                { t: "Impacto no Negócio", d: "Transforma conflitos de chat em experiências memoráveis, reduzindo o churn e aumentando a lealdade do jogador." }
             ]},
             base: { title: "🏗️ Base de Conhecimento Eficiente", items: [
-                { t: "Estrutura Modular", d: "Organize em Q&A e histórico real para agilidade." },
-                { t: "FAQs Centralizadas", d: "Dúvidas comuns sobre pagamentos e políticas organizadas." },
-                { t: "Textos Concisos", d: "Respostas diretas otimizadas para leitura mobile." },
-                { t: "Definição de Persona", d: "Consistência no tom em todos os atendimentos." }
+                { t: "Estrutura Modular", d: "Organização lógica baseada em [Problema] > [Causa] > [Ação]. Facilita a consulta rápida e reduz o tempo de resposta (TTR)." },
+                { t: "FAQs Centralizadas", d: "Dúvidas recorrentes sobre políticas de saque, bônus e integrações de pagamento devem estar unificadas e atualizadas em tempo real." },
+                { t: "Textos Concisos", d: "Respostas diretas e curtas, otimizadas para leitura rápida em dispositivos móveis, sem perda de cordialidade." },
+                { t: "Definição de Persona", d: "Manutenção de consistência no tom de voz, garantindo que o atendimento soe humano e profissional, independentemente do agente." }
             ]},
             praticas: { title: "✨ Melhores Práticas de Comunicação", items: [
-                { t: "Agilidade", d: "Organize informações em blocos claros." },
-                { t: "Clareza", d: "Evite jargões e letras maiúsculas." },
-                { t: "Personalização", d: "Chame pelo nome e evite tom robótico." },
-                { t: "Empatia Real", d: "Esteja ao lado do cliente para solucionar o problema." }
+                { t: "Agilidade", d: "Uso estratégico de blocos de informação claros, facilitando a absorção do conteúdo pelo usuário." },
+                { t: "Clareza", d: "Eliminação de jargões técnicos complexos e proibição de uso de CAIXA ALTA, que transmite agressividade." },
+                { t: "Personalização", d: "Referência direta ao nome do usuário e contexto do histórico, evitando o modelo robótico de respostas prontas." },
+                { t: "Empatia Real", d: "Ações focadas em demonstrar que o agente está do mesmo lado do cliente, trabalhando ativamente na solução do problema." }
             ]},
             habilidades: { title: "🎯 7 Dicas: Habilidades", items: [
-                { t: "Empatia", d: "Reconheça sentimentos antes de propor soluções." },
-                { t: "Escuta Ativa", d: "Resuma para confirmar entendimento." },
-                { t: "Adaptabilidade", d: "Ajuste o tom conforme o perfil do cliente." },
-                { t: "Comunicação Clara", d: "Estrutura: o que houve, ação tomada e próximos passos." }
+                { t: "Empatia", d: "Reconhecimento e validação dos sentimentos do jogador antes de apresentar qualquer solução." },
+                { t: "Escuta Ativa", d: "Técnica de resumir o problema relatado para confirmar o entendimento antes de agir." },
+                { t: "Adaptabilidade", d: "Ajuste dinâmico do vocabulário e tom conforme o perfil e nível de frustração do cliente." },
+                { t: "Comunicação Clara", d: "Estrutura padrão: 1. Identificação do erro, 2. Ação corretiva, 3. Próximos passos e prazo." }
             ]},
             trabalho: { title: "🏢 Melhorias no Trabalho", items: [
-                { t: "Cultura Customer Centric", d: "Decisões baseadas nas necessidades do cliente." },
-                { t: "Eficiência Digital", d: "Consolide fluxos em painéis unificados." },
-                { t: "Colaboração", d: "Trabalho em duplas e troca de boas práticas." }
+                { t: "Cultura Customer Centric", d: "Tomada de decisão pautada nas necessidades do cliente, visando a resolução na primeira interação." },
+                { t: "Eficiência Digital", d: "Consolidação de fluxos em painéis unificados para reduzir a alternância entre abas." },
+                { t: "Colaboração", d: "Cultura de trabalho em duplas para casos de alta complexidade e troca constante de boas práticas." }
             ]},
             pontos: { title: "📍 Otimização de Pontos de Contato", items: [
-                { t: "Trajetória", d: "Mapeie etapas para reduzir atritos." },
-                { t: "Consistência", d: "Padronize terminologia em todos os canais." }
+                { t: "Trajetória", d: "Mapeamento minucioso de toda a jornada do jogador para eliminar etapas que causam atrito." },
+                { t: "Consistência", d: "Padronização absoluta da terminologia técnica em todos os canais de suporte, seja chat, e-mail ou redes sociais." }
             ]},
             interacoes: { title: "💬 Melhorando Interações", items: [
-                { t: "Vínculo", d: "Saudação simpática e referência a histórico." },
-                { t: "Responsabilização", d: "Assuma erros sem defensividade." },
-                { t: "Amenização", d: "Mantenha a calma e valide emoções." }
+                { t: "Vínculo", d: "Saudação personalizada e referência ao histórico para criar um senso de continuidade." },
+                { t: "Responsabilização", d: "Assunção imediata de falhas do sistema sem defensividade ou transferência de culpa." },
+                { t: "Amenização", d: "Uso de técnicas de neutralização para manter a calma e validar emoções sob pressão." }
             ]},
             estrategia: { title: "🚀 Estratégia de Atendimento", items: [
-                { t: "Personalização", d: "Consulte o histórico antes de perguntar." },
-                { t: "Proatividade", d: "Antecipe problemas com informações status." },
-                { t: "Tecnologia", d: "IA como suporte, nunca como substituta." }
+                { t: "Personalização", d: "Consulta obrigatória ao histórico do usuário antes de realizar perguntas repetitivas." },
+                { t: "Proatividade", d: "Antecipação de dúvidas comuns, oferecendo informações de status antes mesmo do cliente perguntar." },
+                { t: "Tecnologia", d: "A IA atua como ferramenta de suporte para agilizar processos, nunca como substituta do julgamento humano." }
             ]},
             equipe: { title: "👥 Engajando a Equipe", items: [
-                { t: "Ambiente", d: "Espaço seguro e manuais acessíveis." },
-                { t: "Reconhecimento", d: "Elogie publicamente resultados excelentes." }
+                { t: "Ambiente", d: "Criação de um espaço seguro onde manuais estão acessíveis e a dúvida é vista como aprendizado." },
+                { t: "Reconhecimento", d: "Implementação de cultura de elogios públicos para resultados de alta performance." }
             ]},
             feedback: { title: "📊 Sistemas de Feedback", items: [
-                { t: "CSAT", d: "Avalia a interação imediata." },
-                { t: "NPS", d: "Mede fidelidade de longo prazo." },
-                { t: "Fechamento", d: "Avise o cliente sobre mudanças geradas por ele." }
+                { t: "CSAT", d: "Métrica focada na satisfação imediata após a interação, visando medir a precisão da resposta." },
+                { t: "NPS", d: "Indicador de lealdade e sentimento de longo prazo do jogador em relação à marca Pixbet." },
+                { t: "Fechamento", d: "Protocolo de avisar o cliente sobre as melhorias geradas a partir do feedback dele, fechando o ciclo de experiência." }
             ]}
         };
 
@@ -128,14 +130,20 @@
                         <option>Preciso de suporte</option>
                     </select>
                     <label>Nível de satisfação com o fluxo atual (1 a 5):</label>
-                    <input type="range" name="satisfacao" min="1" max="5" style="padding:0;">
+                    <input type="range" name="satisfacao" min="1" max="5">
                     <label>Comentários adicionais:</label>
                     <textarea name="feedback" placeholder="O que podemos melhorar no nosso dia a dia?"></textarea>
                     <button type="submit" class="btn-submit">Enviar Feedback</button>
                 </form>`;
             } else if (db[key]) {
                 let html = `<h1>${db[key].title}</h1><div class="grid-container">`;
-                db[key].items.forEach(i => { html += `<div class="card"><h3>${i.t}</h3><p>${i.d}</p></div>`; });
+                db[key].items.forEach(i => { 
+                    html += `<div class="card">
+                        <h3>${i.t}</h3>
+                        <p>${i.d}</p>
+                        <span class="tag">Diretriz Operacional</span>
+                    </div>`; 
+                });
                 html += `</div>`;
                 area.innerHTML = html;
             }
