@@ -25,13 +25,18 @@
         .sidebar a:hover { background: var(--card); color: var(--primary); border: 1px solid var(--primary); }
         
         .content { flex: 1; padding: 50px; overflow-y: auto; background: rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; align-items: center; }
-        
-        /* Layout Grid para os Cards */
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; width: 100%; max-width: 1200px; }
         
-        .card { background: var(--card); padding: 25px; border-radius: 15px; border-left: 5px solid var(--primary); transition: transform 0.3s; }
-        .card:hover { transform: translateY(-5px); }
-        .btn-copy { background: var(--primary); color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-weight: bold; }
+        /* Cards Interativos */
+        .card { background: var(--card); padding: 25px; border-radius: 15px; border-left: 5px solid var(--primary); transition: transform 0.4s; cursor: pointer; }
+        .card:hover { transform: scale(1.03); background: #202020; }
+        
+        /* Formulário de Feedback */
+        form { background: var(--card); padding: 30px; border-radius: 15px; width: 100%; max-width: 500px; border: 1px solid #333; }
+        label { display: block; margin-top: 15px; font-size: 0.9rem; color: #ccc; }
+        input, textarea, select { width: 100%; background: #000; border: 1px solid #444; color: white; padding: 12px; margin-top: 5px; border-radius: 5px; box-sizing: border-box; }
+        .btn-submit { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; cursor: pointer; font-weight: bold; border-radius: 5px; margin-top: 20px; transition: 0.3s; }
+        .btn-submit:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
@@ -56,31 +61,78 @@
 
     <script>
         const db = {
-            habilidadesAgente: { title: "🛡️ Habilidades do Atendente", items: [
-                { t: "O Arsenal", d: "Compreensão emocional, multitarefa e soluções rápidas." },
-                { t: "Pilares", d: "Comunicação, empatia, voz da marca e privacidade." },
+            habilidadesAgente: { title: "🛡️ Habilidades do Agente", items: [
+                { t: "O Arsenal de Habilidades", d: "Exige compreensão emocional, multitarefa e entrega de soluções rápidas." },
+                { t: "Pilares do Atendimento", d: "Comunicação, empatia, resolução de problemas e voz da marca." },
                 { t: "Por que é Crucial?", d: "89% dos clientes voltam após um atendimento positivo." },
-                { t: "Impacto no Negócio", d: "Transforma chats simples em experiências memoráveis." }
+                { t: "Impacto no Negócio", d: "Transforma chats em experiências memoráveis." }
             ]},
-            base: { title: "🏗️ Base de Conhecimento", items: [
-                { t: "Modular", d: "Estruture em Q&A e histórico real." },
-                { t: "FAQs", d: "Centralize dúvidas sobre pagamentos e políticas." },
-                { t: "Conciso", d: "Respostas diretas para leitura em mobile." },
-                { t: "Persona", d: "Mantenha a consistência do tom de voz." }
+            base: { title: "🏗️ Base de Conhecimento Eficiente", items: [
+                { t: "Estrutura Modular", d: "Organize em Q&A e histórico real para agilidade." },
+                { t: "FAQs Centralizadas", d: "Dúvidas comuns sobre pagamentos e políticas organizadas." },
+                { t: "Textos Concisos", d: "Respostas diretas otimizadas para leitura mobile." },
+                { t: "Definição de Persona", d: "Consistência no tom em todos os atendimentos." }
             ]},
-            praticas: { title: "✨ Melhores Práticas", items: [
+            praticas: { title: "✨ Melhores Práticas de Comunicação", items: [
                 { t: "Agilidade", d: "Organize informações em blocos claros." },
                 { t: "Clareza", d: "Evite jargões e letras maiúsculas." },
                 { t: "Personalização", d: "Chame pelo nome e evite tom robótico." },
-                { t: "Empatia", d: "Mostre ao cliente que você resolve o problema junto com ele." }
+                { t: "Empatia Real", d: "Esteja ao lado do cliente para solucionar o problema." }
             ]},
-            /* ... (manter o restante dos dados conforme anterior) */
+            habilidades: { title: "🎯 7 Dicas: Habilidades", items: [
+                { t: "Empatia", d: "Reconheça sentimentos antes de propor soluções." },
+                { t: "Escuta Ativa", d: "Resuma para confirmar entendimento." },
+                { t: "Adaptabilidade", d: "Ajuste o tom conforme o perfil do cliente." },
+                { t: "Comunicação Clara", d: "Estrutura: o que houve, ação tomada e próximos passos." }
+            ]},
+            trabalho: { title: "🏢 Melhorias no Trabalho", items: [
+                { t: "Cultura Customer Centric", d: "Decisões baseadas nas necessidades do cliente." },
+                { t: "Eficiência Digital", d: "Consolide fluxos em painéis unificados." },
+                { t: "Colaboração", d: "Trabalho em duplas e troca de boas práticas." }
+            ]},
+            pontos: { title: "📍 Otimização de Pontos de Contato", items: [
+                { t: "Trajetória", d: "Mapeie etapas para reduzir atritos." },
+                { t: "Consistência", d: "Padronize terminologia em todos os canais." }
+            ]},
+            interacoes: { title: "💬 Melhorando Interações", items: [
+                { t: "Vínculo", d: "Saudação simpática e referência a histórico." },
+                { t: "Responsabilização", d: "Assuma erros sem defensividade." },
+                { t: "Amenização", d: "Mantenha a calma e valide emoções." }
+            ]},
+            estrategia: { title: "🚀 Estratégia de Atendimento", items: [
+                { t: "Personalização", d: "Consulte o histórico antes de perguntar." },
+                { t: "Proatividade", d: "Antecipe problemas com informações status." },
+                { t: "Tecnologia", d: "IA como suporte, nunca como substituta." }
+            ]},
+            equipe: { title: "👥 Engajando a Equipe", items: [
+                { t: "Ambiente", d: "Espaço seguro e manuais acessíveis." },
+                { t: "Reconhecimento", d: "Elogie publicamente resultados excelentes." }
+            ]},
+            feedback: { title: "📊 Sistemas de Feedback", items: [
+                { t: "CSAT", d: "Avalia a interação imediata." },
+                { t: "NPS", d: "Mede fidelidade de longo prazo." },
+                { t: "Fechamento", d: "Avise o cliente sobre mudanças geradas por ele." }
+            ]}
         };
 
         function show(key) {
             const area = document.getElementById('display-area');
             if (key === 'clima') {
-                area.innerHTML = `<h2>Feedback de Clima</h2><form action="https://formspree.io/f/xojgdkdw" method="POST" style="width:100%; max-width:500px;"><textarea name="feedback" style="width:100%;height:100px;background:#171717;color:white;padding:10px;"></textarea><br><button type="submit" class="btn-copy" style="width:100%; margin-top:10px;">Enviar Feedback</button></form>`;
+                area.innerHTML = `<h1>Feedback de Clima</h1>
+                <form action="https://formspree.io/f/xojgdkdw" method="POST">
+                    <label>Como você está se sentindo hoje?</label>
+                    <select name="sentimento">
+                        <option>Motivado(a)</option>
+                        <option>Produtivo(a)</option>
+                        <option>Sobrecarregado(a)</option>
+                        <option>Preciso de suporte</option>
+                    </select>
+                    <label>Nível de satisfação com o fluxo atual (1 a 5):</label>
+                    <input type="range" name="satisfacao" min="1" max="5" style="padding:0;">
+                    <label>Comentários adicionais:</label>
+                    <textarea name="feedback" placeholder="O que podemos melhorar no nosso dia a dia?"></textarea>
+                    <button type="submit" class="btn-submit">Enviar Feedback</button>
+                </form>`;
             } else if (db[key]) {
                 let html = `<h1>${db[key].title}</h1><div class="grid-container">`;
                 db[key].items.forEach(i => { html += `<div class="card"><h3>${i.t}</h3><p>${i.d}</p></div>`; });
